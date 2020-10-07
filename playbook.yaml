@@ -1,0 +1,16 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  vars:
+    service: nginx
+  tasks:
+  - name: Install NGINX
+    apt:
+      name: "{{ service }}"
+      state: latest
+      update_cache: true
+  - name: Start NGINX Service
+    service:
+      name: "{{ service }}"
+      state: started
